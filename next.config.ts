@@ -5,9 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000",
+        protocol: "https",
+        hostname: "doclynx-backend.onrender.com",
         pathname: "/uploads/**",
       },
     ],
