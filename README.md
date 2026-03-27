@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📦 Proof-Based Delivery & Escrow Platform
 
-## Getting Started
+A Next.js (App Router) frontend application providing a robust, **role-isolated** workflow for managing secure shipments, tracking proofs-of-delivery, processing escrow payments, and handling disputes.
 
-First, run the development server:
+## 🏗️ Role-Based Architecture (Strict Isolation)
+
+This platform is designed as a collection of "mini-apps" inside a single Next.js project. Each user role has its own dedicated directory, layout, and specialized UI components to prevent role confusion and ensure security.
+
+- **Sender Console** (`/app/sender`): Initialize shipments, run multi-proof validation, and release escrow funds.
+- **Courier Hub** (`/app/courier`): View assigned deliveries and upload pickup/delivery image proofs.
+- **Receiver Portal** (`/app/receiver`): Track inbound packages and complete secure OTP handshakes.
+- **Unified Auth** (`/app/(auth)`): Shared login and registration with automatic role-based redirection.
+
+## ✨ Key Features
+
+### 👥 Strict Role Separation
+- Isolated routing and navigation per role.
+- Middleware-level (Layout) route protection: Users cannot access routes outside their assigned role.
+- Role-specific themes (e.g., Sender: Slate, Courier: Blue, Receiver: Purple).
+
+### 📦 Shipment Lifecycle & Escrow
+- **States**: `CREATED` → `IN_TRANSIT` → `DELIVERED` → `VERIFIED` → `DISPUTED`.
+- **Escrow**: Funds are locked upon shipment creation and can only be released by the Sender after the system validates both courier proofs and receiver OTP.
+
+### 🔒 Security Handshakes
+- **Image Proofs**: Mandatory `PICKUP` and `DELIVERY` photo uploads for couriers.
+- **OTP Verification**: Secure 6-digit handshake between Receiver and Platform to confirm physical handover.
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Backend API running at `http://localhost:5000`.
+- Node.js 18+ installed.
+
+### Installation
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app runs on `http://localhost:3001` (if port 3000 is occupied).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🧪 Seed Accounts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Sender** | `sender@example.com` | `password123` |
+| **Courier** | `courier@example.com" | `password123` |
+| **Receiver** | `receiver@example.com" | `password123` |
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+/app
+  /(auth)     - Shared Login/Register
+  /sender     - Sender mini-app routes
+  /courier    - Courier mini-app routes
+  /receiver   - Receiver mini-app routes
+/components
+  /ui         - Design system atoms
+  /shared     - Reusable business logic components
+  /sender     - Sender-specific actions
+  /courier    - Courier-specific actions
+  /receiver   - Receiver-specific actions
+/context      - AuthContext
+/lib          - API Client & Auth utilities
+```
