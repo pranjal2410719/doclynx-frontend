@@ -24,8 +24,8 @@ export default function ReceiverLayout({ children }: { children: React.ReactNode
   }
 
   return (
-    <div className="flex min-h-screen justify-center p-8 bg-white font-sans text-slate-900 md:p-12">
-      <div className="flex w-full max-w-[1400px] border border-slate-200 bg-white shadow-sm overflow-hidden flex-col md:flex-row">
+    <div className="flex min-h-screen justify-center p-0 md:p-12 bg-white font-sans text-slate-900">
+      <div className="flex w-full max-w-[1400px] md:border md:border-slate-200 bg-white md:shadow-sm overflow-hidden flex-col md:flex-row">
         {/* Sidebar */}
         <aside className="w-full md:w-[300px] border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0">
           <div className="p-10 border-b border-slate-200">

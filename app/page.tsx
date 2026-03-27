@@ -97,7 +97,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-32 items-start lg:items-baseline border-t border-black/10 pt-10 lg:pt-12 animate-in fade-in duration-1000 delay-500">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-0 lg:justify-between items-start lg:items-baseline border-t border-black/10 pt-10 lg:pt-12 animate-in fade-in duration-1000 delay-500 w-full max-w-[1400px]">
             <div className="flex flex-col gap-1 lg:gap-2">
               <span className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-400">Core Mission</span>
               <span className="text-xs lg:text-sm font-medium uppercase italic">"Eliminating fraud through double-ended verification."</span>
